@@ -1,0 +1,260 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevents scrollbars */
+}
+
+body {
+  background: linear-gradient(to bottom, #000428, #000000); /* Night sky gradient */
+  font-family: "Press Start 2P", monospace;
+  font-smooth: never;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* UI */
+.topUI {
+  position: absolute;
+  z-index: 1000;
+  transform: translate(-50%, 25px);
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  letter-spacing: 2px;
+  color: #fff;
+  font-size: 17px;
+}
+
+.topUI::before {
+  display: inline-block;
+  height: 17px;
+  padding: 1px 2px;
+  line-height: 19px;
+  font-size: 17px;
+  background: #fff;
+  text-shadow: none;
+  font-weight: 900;
+  letter-spacing: 0;
+  border-radius: 6px;
+  margin-right: 30px;
+  border: 2px solid #7dd8c9;
+}
+
+#time {
+  left: 13%;
+  color: #f4f430;
+}
+
+#time::before {
+  content: "TIME";
+  color: #f57214;
+}
+
+#score {
+  left: 45%;
+}
+
+#score::before {
+  content: "SCORE";
+  color: #a61a9d;
+}
+
+#lap {
+  left: 88%;
+  width: 45%;
+}
+
+#lap::before {
+  content: "LAP";
+  color: #0082df;
+}
+
+#tacho {
+  position: absolute;
+  text-align: right;
+  width: 23%;
+  bottom: 5%;
+  z-index: 2000;
+  color: #e62e13;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  letter-spacing: 2px;
+  font-size: 23px;
+}
+
+#tacho::after {
+  content: "km/h";
+  color: #fab453;
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+/* Road */
+#game {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: #000428; /* Darker road background */
+  user-select: none;
+  width: 100%;
+  height: 100%;
+}
+
+#road {
+  position: relative;
+  overflow: hidden; /* Ensure that any overflowing content is not visible */
+  background: #000428; /* Darker road background */
+  transition: opacity 1s ease-in-out; /* Smooth transition */
+}
+
+#road * {
+  position: absolute;
+  background: none; /* Remove any backgrounds from child elements */
+  border: none; /* Remove any borders */
+  margin: 0; /* Remove any margins */
+  padding: 0; /* Remove any paddings */
+  image-rendering: auto; /* Smooth rendering */
+}
+
+
+#hero {
+  background-repeat: no-repeat;
+  background-position: -110px 0;
+  z-index: 2000;
+  transform: scale(1.4);
+}
+
+#hero {
+  position: absolute;
+  top: 50%; /* Example initial position */
+  left: 50%; /* Example initial position */
+  /* Other styles as needed */
+}
+
+#cloud {
+  background-size: auto 100%;
+  width: 100%;
+  height: 57%;
+}
+
+#controls-container {
+  position: absolute;
+  bottom: 10px; /* Adjust position */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between buttons */
+  z-index: 3000; /* Ensure buttons are above other elements */
+}
+
+.control-button {
+  background: #7dd8c9; /* Button background color */
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: background 0.3s ease;
+}
+
+.control-button:hover {
+  background: #5cb4a1; /* Darker shade on hover */
+}
+
+@media (max-width: 600px) {
+  .control-button {
+    font-size: 14px; /* Smaller font size on smaller screens */
+    padding: 8px 16px; /* Adjust padding for smaller screens */
+  }
+}
+
+/* Home */
+#road, #home {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#home {
+  color: #ffffff;
+  z-index: 1000;
+}
+
+#highscore {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  bottom: 0;
+  column-count: 3;
+  column-fill: auto;
+}
+
+#highscore * {
+  color: #95a895;
+  margin: 0 0 6px 27px;
+}
+
+h1 {
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -50%);
+  font-size: 5em;
+  background: linear-gradient(#004e92, #e2bbf0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
+  color: #d9bbf3;
+  text-shadow: 0 0 black, 0 2px black, 2px 0 black, 0 0 black;
+  animation: smoothBlinker 0.7s ease-in-out infinite;
+}
+
+@keyframes smoothBlinker {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1; /* Change this value to adjust the fade effect */
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.controls {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.controls button {
+  margin: 5px;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.controls button:active {
+  background-color: #0056b3;
+}
